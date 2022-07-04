@@ -33,4 +33,5 @@ func TestPeopleLen(t *testing.T) {
 	if len(p) != p.Len() {
 		t.Errorf("len(p) is not correct: %d, got %d", p.Len(), len(p))
 	}
+
 }
