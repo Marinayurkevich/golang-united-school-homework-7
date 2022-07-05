@@ -20,18 +20,34 @@ func init() {
 
 // WRITE YOUR CODE BELOW
 
-func TestPeopleLen(t *testing.T) {
-	var p = People{Person{
-		firstName: "John",
-		lastName:  "Smith",
-		birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-	}, Person{
-		firstName: "Roy",
-		lastName:  "Brown",
-		birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-	}}
-	if len(p) != p.Len() {
-		t.Errorf("len(p) is not correct: %d, got %d", p.Len(), len(p))
+func TestPeople_Len(t *testing.T) {
+	tests := []struct {
+		name string
+		p    People
+		want int
+	}{
+		{
+			name: "2 people",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			want: 2,
+		},
 	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
 
+			if got := tt.p.Len(); got != tt.want {
+				t.Errorf("Len() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
