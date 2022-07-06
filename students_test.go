@@ -20,7 +20,7 @@ func init() {
 
 // WRITE YOUR CODE BELOW
 
-func TestPeople_Len(t *testing.T) {
+func TestPeopleLen(t *testing.T) {
 	tests := []struct {
 		name string
 		p    People
@@ -52,7 +52,7 @@ func TestPeople_Len(t *testing.T) {
 	}
 }
 
-func TestPeople_Swap(t *testing.T) {
+func TestPeopleSwap(t *testing.T) {
 	type args struct {
 		i int
 		j int
