@@ -51,3 +51,37 @@ func TestPeople_Len(t *testing.T) {
 		})
 	}
 }
+
+func TestPeople_Swap(t *testing.T) {
+	type args struct {
+		i int
+		j int
+	}
+	tests := []struct {
+		name string
+		p    People
+		args args
+	}{
+		// TODO: Add test cases.
+		{
+			name: "2 people",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{1, 0},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			tt.p.Swap(tt.args.i, tt.args.j)
+		})
+	}
+}
