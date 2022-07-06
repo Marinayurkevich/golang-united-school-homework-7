@@ -96,7 +96,6 @@ func TestNew(t *testing.T) {
 		want    *Matrix
 		wantErr bool
 	}{
-		// TODO: Add test cases.
 		{
 			name: "",
 			args: args{
@@ -119,6 +118,85 @@ func TestNew(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("New() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMatrixRows(t *testing.T) {
+	type fields struct {
+		rows int
+		cols int
+		data []int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   [][]int
+	}{
+		// TODO: Add test cases.
+		{
+			name: " ",
+			fields: fields{
+				rows: 3,
+				cols: 3,
+				data: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+			},
+			want: [][]int{
+				{1, 1, 1},
+				{2, 2, 2},
+				{3, 3, 3},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m := Matrix{
+				rows: tt.fields.rows,
+				cols: tt.fields.cols,
+				data: tt.fields.data,
+			}
+			if got := m.Rows(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Rows() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMatrixCols(t *testing.T) {
+	type fields struct {
+		rows int
+		cols int
+		data []int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   [][]int
+	}{
+		{
+			name: " ",
+			fields: fields{
+				rows: 3,
+				cols: 3,
+				data: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+			},
+			want: [][]int{
+				{1, 2, 3},
+				{1, 2, 3},
+				{1, 2, 3},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m := Matrix{
+				rows: tt.fields.rows,
+				cols: tt.fields.cols,
+				data: tt.fields.data,
+			}
+			if got := m.Cols(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Cols() = %v, want %v", got, tt.want)
 			}
 		})
 	}
