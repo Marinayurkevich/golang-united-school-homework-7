@@ -2,6 +2,7 @@ package coverage
 
 import (
 	"os"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -81,6 +82,44 @@ func TestPeopleSwap(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.p.Swap(tt.args.i, tt.args.j)
+		})
+	}
+}
+
+func TestNew(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    *Matrix
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{
+			name: "",
+			args: args{
+				str: "1 1 1\n2 2 2\n3 3 3",
+			},
+			want: &Matrix{
+				rows: 3,
+				cols: 3,
+				data: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+			},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := New(tt.args.str)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("New() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("New() got = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }
