@@ -62,7 +62,6 @@ func TestPeople_Swap(t *testing.T) {
 		p    People
 		args args
 	}{
-		// TODO: Add test cases.
 		{
 			name: "2 people",
 			p: People{
