@@ -97,7 +97,15 @@ func TestNew(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "",
+			name: " ",
+			args: args{
+				str: "1 1 1\n2 2\n3",
+			},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: " ",
 			args: args{
 				str: "1 1 1\n2 2 2\n3 3 3",
 			},
@@ -107,6 +115,14 @@ func TestNew(t *testing.T) {
 				data: []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
 			},
 			wantErr: false,
+		},
+		{
+			name: " ",
+			args: args{
+				str: "1 1 1\n2 V 2\n3 3 3",
+			},
+			want:    nil,
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
