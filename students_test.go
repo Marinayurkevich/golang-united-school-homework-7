@@ -97,8 +97,8 @@ func TestPeopleLess(t *testing.T) {
 				},
 			},
 			args: args{
-				i: 0,
-				j: 1,
+				i: 1,
+				j: 0,
 			},
 			want: false,
 		},
@@ -135,8 +135,8 @@ func TestPeopleLess(t *testing.T) {
 				},
 			},
 			args: args{
-				i: 0,
-				j: 1,
+				i: 1,
+				j: 0,
 			},
 			want: false,
 		},
@@ -173,8 +173,8 @@ func TestPeopleLess(t *testing.T) {
 				},
 			},
 			args: args{
-				i: 0,
-				j: 1,
+				i: 1,
+				j: 0,
 			},
 			want: false,
 		},
