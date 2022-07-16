@@ -81,7 +81,14 @@ func TestPeopleSwap(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			oldI := tt.p[tt.args.i]
+			oldJ := tt.p[tt.args.j]
 			tt.p.Swap(tt.args.i, tt.args.j)
+			if oldI != tt.p[tt.args.j] {
+				t.Errorf("old i (%v) != new j (%v)", oldI, tt.p[tt.args.j])
+			} else if oldJ != tt.p[tt.args.i] {
+				t.Errorf("old j (%v) != new i (%v)", oldJ, tt.p[tt.args.i])
+			}
 		})
 	}
 }
