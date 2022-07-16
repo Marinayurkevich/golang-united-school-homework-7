@@ -43,11 +43,165 @@ func TestPeopleLen(t *testing.T) {
 			want: 2,
 		},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
 			if got := tt.p.Len(); got != tt.want {
 				t.Errorf("Len() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+func TestPeopleLess(t *testing.T) {
+	type args struct {
+		i int
+		j int
+	}
+	tests := []struct {
+		name string
+		p    People
+		args args
+		want bool
+	}{
+		{
+			name: "Person 1 > Person 2 by birthday (true)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: true,
+		},
+		{
+			name: "Person 1 > Person 2 by birthday (false)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: false,
+		},
+		{
+			name: "Person 1 > Person 2 by name (true)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: true,
+		},
+		{
+			name: "Person 1 > Person 2 by name (false)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: false,
+		},
+		{
+			name: "Person 1 > Person 2 by lastname (true)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: true,
+		},
+		{
+			name: "Person 1 > Person 2 by lastname (false)",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "Roy",
+					lastName:  "Brown",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: false,
+		},
+		{
+			name: "Person 1 == Person 2",
+			p: People{
+				{
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 0,
+				j: 1,
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.p.Less(tt.args.i, tt.args.j); got != tt.want {
+				t.Errorf("Less() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -81,13 +235,12 @@ func TestPeopleSwap(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			oldI := tt.p[tt.args.i]
-			oldJ := tt.p[tt.args.j]
+			p0, p1 := tt.p[0], tt.p[1]
+
 			tt.p.Swap(tt.args.i, tt.args.j)
-			if oldI != tt.p[tt.args.j] {
-				t.Errorf("old i (%v) != new j (%v)", oldI, tt.p[tt.args.j])
-			} else if oldJ != tt.p[tt.args.i] {
-				t.Errorf("old j (%v) != new i (%v)", oldJ, tt.p[tt.args.i])
+
+			if !((p0 == tt.p[1]) && (p1 == tt.p[0])) {
+				t.Errorf("Fail to swap")
 			}
 		})
 	}
