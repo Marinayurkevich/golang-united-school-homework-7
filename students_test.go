@@ -65,34 +65,16 @@ func TestPeopleLess(t *testing.T) {
 		args args
 		want bool
 	}{
-		{name: "Person 1 > Person 2 by birthday (true)",
-			p: People{
-				{
-					firstName: "John",
-					lastName:  "Smith",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				},
-			},
-			args: args{
-				i: 0,
-				j: 1,
-			},
-			want: true,
-		},
 		{
-			name: "Person 1 > Person 2 by birthday (false)",
+			name: "Person 1 == Person 2",
 			p: People{
 				{
-					firstName: "John",
+					firstName: "Roy",
 					lastName:  "Smith",
 					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
 				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
+					firstName: "John",
+					lastName:  "Smith",
 					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
 				},
 			},
@@ -100,101 +82,26 @@ func TestPeopleLess(t *testing.T) {
 				i: 1,
 				j: 0,
 			},
-			want: false,
-		},
-		{
-			name: "Person 1 > Person 2 by name (true)",
-			p: People{
-				{
-					firstName: "John",
-					lastName:  "Smith",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				},
-			},
-			args: args{
-				i: 0,
-				j: 1,
-			},
 			want: true,
-		},
-		{name: "Person 1 > Person 2 by name (false)",
-			p: People{
-				{
-					firstName: "John",
-					lastName:  "Smith",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				},
-			},
-			args: args{
-				i: 1,
-				j: 0,
-			},
-			want: false,
-		},
-		{
-			name: "Person 1 > Person 2 by lastname (true)",
-			p: People{
-				{
-					firstName: "John",
-					lastName:  "Smith",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				},
-			},
-			args: args{
-				i: 0,
-				j: 1,
-			},
-			want: true,
-		},
-		{
-			name: "Person 1 > Person 2 by lastname (false)",
-			p: People{
-				{
-					firstName: "John",
-					lastName:  "Smith",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				}, {
-					firstName: "Roy",
-					lastName:  "Brown",
-					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
-				},
-			},
-			args: args{
-				i: 1,
-				j: 0,
-			},
-			want: false,
 		},
 		{
 			name: "Person 1 == Person 2",
 			p: People{
 				{
 					firstName: "John",
-					lastName:  "Smith",
+					lastName:  "Brown",
 					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
 				}, {
 					firstName: "John",
-					lastName:  "Smith",
+					lastName:  "Albow",
 					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
 				},
 			},
 			args: args{
-				i: 0,
-				j: 1,
+				i: 1,
+				j: 0,
 			},
-			want: false,
+			want: true,
 		},
 		{
 			name: "Person 1 != Person 2",
