@@ -333,6 +333,16 @@ func TestMatrix_Set(t *testing.T) {
 			},
 			want: true,
 		},
+		{
+			name:   "Less than 0",
+			fields: fields{},
+			args: args{
+				row:   -1,
+				col:   1,
+				value: 1,
+			},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
