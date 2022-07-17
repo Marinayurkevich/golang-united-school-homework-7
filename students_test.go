@@ -395,3 +395,34 @@ func TestMatrixCols(t *testing.T) {
 		})
 	}
 }
+
+func TestMatrix_Set(t *testing.T) {
+	type fields struct {
+		rows int
+		cols int
+		data []int
+	}
+	type args struct {
+		row   int
+		col   int
+		value int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   bool
+	}{}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m := &Matrix{
+				rows: tt.fields.rows,
+				cols: tt.fields.cols,
+				data: tt.fields.data,
+			}
+			if got := m.Set(tt.args.row, tt.args.col, tt.args.value); got != tt.want {
+				t.Errorf("Set() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
