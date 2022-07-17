@@ -53,6 +53,7 @@ func TestPeopleLen(t *testing.T) {
 		})
 	}
 }
+
 func TestPeopleLess(t *testing.T) {
 	type args struct {
 		i int
@@ -64,8 +65,7 @@ func TestPeopleLess(t *testing.T) {
 		args args
 		want bool
 	}{
-		{
-			name: "Person 1 > Person 2 by birthday (true)",
+		{name: "Person 1 > Person 2 by birthday (true)",
 			p: People{
 				{
 					firstName: "John",
@@ -121,8 +121,7 @@ func TestPeopleLess(t *testing.T) {
 			},
 			want: true,
 		},
-		{
-			name: "Person 1 > Person 2 by name (false)",
+		{name: "Person 1 > Person 2 by name (false)",
 			p: People{
 				{
 					firstName: "John",
