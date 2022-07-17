@@ -302,3 +302,97 @@ func TestMatrixCols(t *testing.T) {
 		})
 	}
 }
+
+func TestMatrix_Set(t *testing.T) {
+	type fields struct {
+		rows int
+		cols int
+		data []int
+	}
+	type args struct {
+		row   int
+		col   int
+		value int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   bool
+	}{
+		{
+			name:   "row < 0",
+			fields: fields{},
+			args: args{
+				row:   -1,
+				col:   1,
+				value: 1,
+			},
+			want: false,
+		},
+		{
+			name: "m.rows <= row",
+			fields: fields{
+				rows: 1,
+				cols: 1,
+				data: []int{},
+			},
+			args: args{
+				row:   2,
+				col:   1,
+				value: 1,
+			},
+			want: false,
+		},
+		{
+			name:   "col < 0",
+			fields: fields{},
+			args: args{
+				row:   1,
+				col:   -1,
+				value: 1,
+			},
+			want: false,
+		},
+		{
+			name: "m.cols <= col",
+			fields: fields{
+				rows: 1,
+				cols: 1,
+				data: []int{},
+			},
+			args: args{
+				row:   1,
+				col:   2,
+				value: 1,
+			},
+			want: false,
+		},
+		{
+			name: "Correct matrix",
+			fields: fields{
+				rows: 1,
+				cols: 3,
+				data: []int{1, 2, 3},
+			},
+			args: args{
+				row:   0,
+				col:   0,
+				value: 1,
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m := &Matrix{
+				rows: tt.fields.rows,
+				cols: tt.fields.cols,
+				data: tt.fields.data,
+			}
+			if got := m.Set(tt.args.row, tt.args.col, tt.args.value); got != tt.want {
+				t.Errorf("Set() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
