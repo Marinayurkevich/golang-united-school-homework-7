@@ -319,7 +319,7 @@ func TestMatrix_Set(t *testing.T) {
 		args   args
 		want   bool
 	}{
-		{
+		/*{
 			name:   "row < 0",
 			fields: fields{},
 			args: args{
@@ -366,7 +366,7 @@ func TestMatrix_Set(t *testing.T) {
 				value: 1,
 			},
 			want: false,
-		},
+		},*/
 		{
 			name: "Correct matrix",
 			fields: fields{

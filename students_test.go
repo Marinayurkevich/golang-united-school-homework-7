@@ -320,55 +320,7 @@ func TestMatrix_Set(t *testing.T) {
 		want   bool
 	}{
 		{
-			name:   "row < 0",
-			fields: fields{},
-			args: args{
-				row:   -1,
-				col:   1,
-				value: 1,
-			},
-			want: false,
-		},
-		{
-			name: "m.rows <= row",
-			fields: fields{
-				rows: 1,
-				cols: 1,
-				data: []int{},
-			},
-			args: args{
-				row:   2,
-				col:   1,
-				value: 1,
-			},
-			want: false,
-		},
-		{
-			name:   "col < 0",
-			fields: fields{},
-			args: args{
-				row:   1,
-				col:   -1,
-				value: 1,
-			},
-			want: false,
-		},
-		{
-			name: "m.cols <= col",
-			fields: fields{
-				rows: 1,
-				cols: 1,
-				data: []int{},
-			},
-			args: args{
-				row:   1,
-				col:   2,
-				value: 1,
-			},
-			want: false,
-		},
-		{
-			name: "Correct matrix",
+			name: "True",
 			fields: fields{
 				rows: 1,
 				cols: 3,
