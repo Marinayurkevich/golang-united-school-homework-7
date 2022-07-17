@@ -302,7 +302,6 @@ func TestMatrixCols(t *testing.T) {
 		})
 	}
 }
-
 func TestMatrix_Set(t *testing.T) {
 	type fields struct {
 		rows int
