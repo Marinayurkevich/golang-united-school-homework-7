@@ -196,6 +196,25 @@ func TestPeopleLess(t *testing.T) {
 			},
 			want: false,
 		},
+		{
+			name: "Person 1 != Person 2",
+			p: People{
+				{
+					firstName: "Barbara",
+					lastName:  "Lou",
+					birthDay:  time.Date(1990, time.November, 14, 0, 0, 0, 0, time.UTC),
+				}, {
+					firstName: "John",
+					lastName:  "Smith",
+					birthDay:  time.Date(1988, time.March, 15, 0, 0, 0, 0, time.UTC),
+				},
+			},
+			args: args{
+				i: 1,
+				j: 0,
+			},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
