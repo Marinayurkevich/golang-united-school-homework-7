@@ -84,7 +84,7 @@ func TestPeopleLess(t *testing.T) {
 			want: true,
 		},
 		{
-			name: "Person 1 > Person 2 by birthday (false)",
+			name: "Person 1 >> Person 2 by birthday (false)",
 			p: People{
 				{
 					firstName: "John",
